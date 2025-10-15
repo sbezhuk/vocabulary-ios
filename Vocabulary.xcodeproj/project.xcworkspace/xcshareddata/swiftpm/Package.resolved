@@ -1,0 +1,24 @@
+{
+  "originHash" : "df693f2049a7855adccb01811553ca710e53c698ba62b0be2113cbdd469f68c6",
+  "pins" : [
+    {
+      "identity" : "rive-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sbezhuk/rive-ios.git",
+      "state" : {
+        "revision" : "39c3a99bbd05e7b0c4d25b9b2811937c945d7b23",
+        "version" : "6.11.4"
+      }
+    },
+    {
+      "identity" : "swinject",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Swinject/Swinject.git",
+      "state" : {
+        "revision" : "b685b549fe4d8ae265fc7a2f27d0789720425d69",
+        "version" : "2.10.0"
+      }
+    }
+  ],
+  "version" : 3
+}
