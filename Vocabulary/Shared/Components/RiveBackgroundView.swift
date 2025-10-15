@@ -50,8 +50,3 @@ struct RiveBackgroundView: View {
         }
     }
 }
-
-// MARK: - Preview
-#Preview {
-    RiveBackgroundView()
-}

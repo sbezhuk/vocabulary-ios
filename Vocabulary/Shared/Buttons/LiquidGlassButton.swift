@@ -75,7 +75,7 @@ private struct LiquidGlassButtonStyle: ButtonStyle {
         label
             .frame(width: size, height: size)
             .clipShape(Circle())
-            .glassEffect(Glass.clear)
+            .glassEffect(.clear)
             .contentShape(Circle())
             .scaleEffect(isPressed ? pressedScale : 1.0)
             .animation(.easeInOut(duration: 0.1), value: isPressed)

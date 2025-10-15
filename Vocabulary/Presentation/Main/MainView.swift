@@ -12,24 +12,17 @@ struct MainView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            Text("Home")
-                .tabItem {
-                    Label("Home", systemImage: "house.fill")
-                }
-                .tag(0)
-
-            Text("Search")
-                .tabItem {
-                    Label("Search", systemImage: "magnifyingglass")
-                }
-                .tag(1)
-
-            Text("Settings")
-                .tabItem {
-                    Label("Settings", systemImage: "gearshape.fill")
-                }
-                .tag(2)
+            Tab("Home", systemImage: "house", value: 0) {
+                Color.green.ignoresSafeArea()
+            }
+            
+            Tab("Profile", systemImage: "person", value: 1) {
+                Color.blue.ignoresSafeArea()
+            }
+            
+            Tab("Settings", systemImage: "gearshape", value: 2) {
+                Color.red.ignoresSafeArea()
+            }
         }
-        .glassEffect(.regular, in: Capsule())
     }
 }

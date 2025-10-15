@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    @ObservedObject var viewModel: RootViewModel = DIContainer.shared.resolve(RootViewModel.self)
+    @EnvironmentObject var viewModel: RootViewModel
     
     var body: some View {
         ZStack {

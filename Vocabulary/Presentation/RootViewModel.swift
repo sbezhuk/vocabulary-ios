@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-private struct Constants {
+private enum Constants {
     static let hasSeenOnboardingKey = "hasSeenOnboarding"
 }
 

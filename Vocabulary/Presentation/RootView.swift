@@ -8,10 +8,17 @@
 import SwiftUI
 
 struct RootView: View {
-    @StateObject private var viewModel: RootViewModel = DIContainer.shared.resolve(RootViewModel.self)
+    @EnvironmentObject private var viewModel: RootViewModel
     
     var body: some View {
-        switch viewModel.currentScreen {
+        screenView(for: viewModel.currentScreen)
+            .id(viewModel.currentScreen)
+            
+    }
+    
+    @ViewBuilder
+    private func screenView(for screen: AppScreen) -> some View {
+        switch screen {
         case .onboarding:
             OnboardingView()
         case .main:
