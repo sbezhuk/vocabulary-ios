@@ -13,15 +13,15 @@ struct MainView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             Tab("Home", systemImage: "house", value: 0) {
-                Color.green.ignoresSafeArea()
+                HomeView()
             }
             
             Tab("Profile", systemImage: "person", value: 1) {
-                Color.blue.ignoresSafeArea()
+                ProfileView()
             }
             
             Tab("Settings", systemImage: "gearshape", value: 2) {
-                Color.red.ignoresSafeArea()
+                SettingsView()
             }
         }
     }
