@@ -26,27 +26,23 @@ struct OnboardingView: View {
             
             VStack {
                 Spacer().frame(height: Constants.topFrameHeight)
-                
                 AnimatedTextSectionView()
-                
                 Spacer()
-                
                 TermsTextView()
             }
             .padding(.horizontal, Constants.headerHorizontalPadding)
-            
-            VStack {
-                Spacer()
-                
-                HStack {
-                    Spacer()
-                    LiquidGlassButton {
-                        viewModel.completeOnboardingView()
-                    }
-                }
-                .padding(.trailing, Constants.bottomNextButtonTrailngPadding)
-                .padding(.bottom, Constants.bottomNextButtonBottomPadding)
-            }
         }
+        .overlay(
+            HStack {
+                Spacer()
+                LiquidGlassButton {
+                    viewModel.completeOnboardingView()
+                }
+            }.padding(.trailing, Constants.bottomNextButtonTrailngPadding).padding(
+                .bottom,
+                Constants.bottomNextButtonBottomPadding
+            ),
+            alignment: .bottomTrailing
+        )
     }
 }
