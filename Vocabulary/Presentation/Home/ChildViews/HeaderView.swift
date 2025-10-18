@@ -7,20 +7,32 @@
 
 import SwiftUI
 
+private enum Constants {
+    static let titleText: String = "Home"
+    static let titleFontSize: CGFloat = 32
+    static let titleFontWeight: Font.GeologicaFont = .bold
+    static let titleColor: Color = Color(hex: .lightWhite)
+
+    static let buttonSystemImage: String = "plus"
+    static let buttonSize: CGFloat = 60
+
+    static let horizontalPadding: CGFloat = 24
+}
+
 struct HeaderView: View {
     var body: some View {
         HStack {
-            Text("Home")
-                .font(Font.geologica(.bold, size: 32))
-                .foregroundStyle(Color(hex: .lightWhite))
+            Text(Constants.titleText)
+                .font(Font.geologica(Constants.titleFontWeight, size: Constants.titleFontSize))
+                .foregroundStyle(Constants.titleColor)
                 
             Spacer()
                 
-            LiquidGlassButton(systemImage: "plus", buttonSize: 60) {
+            LiquidGlassButton(systemImage: Constants.buttonSystemImage, buttonSize: Constants.buttonSize) {
                 print("add ++++")
             }
         }
-        .padding([.leading, .trailing], 24)
+        .padding([.leading, .trailing], Constants.horizontalPadding)
     }
 }
 

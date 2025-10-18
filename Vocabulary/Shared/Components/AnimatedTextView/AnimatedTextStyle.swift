@@ -9,32 +9,33 @@ import SwiftUI
 
 // MARK: - Public Structs
 /// Style descriptor for animated text: font size, weight, and color.
-public struct AnimatedTextStyle {
-    public let fontSize: CGFloat
-    public let fontWeight: Font.Weight
-    public let color: Color
+struct AnimatedTextStyle {
+    let fontSize: CGFloat
+    let fontWeight: Font.GeologicaFont
+    let color: Color
 
     /// Convenience computed font for this style
-    public var font: Font { .system(size: fontSize, weight: fontWeight) }
+    var font: Font { Font.geologica(fontWeight, size: fontSize) }
 
     /// Preset style for title
-    public static let title = AnimatedTextStyle(
+    static let title = AnimatedTextStyle(
         fontSize: 36,
         fontWeight: .black,
         color: .primary
     )
 
     /// Preset style for subtitle
-    public static let subtitle = AnimatedTextStyle(
+    static let subtitle = AnimatedTextStyle(
         fontSize: 18,
         fontWeight: .medium,
         color: .primary
     )
 
     /// Memberwise initializer
-    public init(fontSize: CGFloat, fontWeight: Font.Weight, color: Color) {
+    init(fontSize: CGFloat, fontWeight: Font.GeologicaFont, color: Color) {
         self.fontSize = fontSize
         self.fontWeight = fontWeight
         self.color = color
     }
 }
+

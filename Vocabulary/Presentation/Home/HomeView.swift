@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    
     var body: some View {
         ZStack(alignment: .top) {
             Color(hex: .background).ignoresSafeArea()

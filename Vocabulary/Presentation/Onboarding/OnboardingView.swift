@@ -7,6 +7,16 @@
 
 import SwiftUI
 
+private enum Constants {
+    static let topFrameHeight: CGFloat = 74
+    
+    static let headerHorizontalPadding: CGFloat = 24
+    
+    static let bottomNextButtonTrailngPadding: CGFloat = 24
+    static let bottomNextButtonBottomPadding: CGFloat = 60
+    
+}
+
 struct OnboardingView: View {
     @EnvironmentObject var viewModel: RootViewModel
     
@@ -15,7 +25,7 @@ struct OnboardingView: View {
             RiveBackgroundView()
             
             VStack {
-                Spacer().frame(height: 74)
+                Spacer().frame(height: Constants.topFrameHeight)
                 
                 AnimatedTextSectionView()
                 
@@ -23,7 +33,7 @@ struct OnboardingView: View {
                 
                 TermsTextView()
             }
-            .padding(.horizontal, 24)
+            .padding(.horizontal, Constants.headerHorizontalPadding)
             
             VStack {
                 Spacer()
@@ -34,8 +44,8 @@ struct OnboardingView: View {
                         viewModel.completeOnboardingView()
                     }
                 }
-                .padding(.trailing, 24)
-                .padding(.bottom, 60)
+                .padding(.trailing, Constants.bottomNextButtonTrailngPadding)
+                .padding(.bottom, Constants.bottomNextButtonBottomPadding)
             }
         }
     }

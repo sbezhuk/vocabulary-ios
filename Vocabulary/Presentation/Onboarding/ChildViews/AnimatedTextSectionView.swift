@@ -7,21 +7,35 @@
 
 import SwiftUI
 
+private enum Constants {
+    static let titleText: String = "Expand Your Vocabulary"
+    static let subtitleText: String = "Learn, remember, and use English words effortlessly."
+
+    static let titleFontSize: CGFloat = 36
+    static let titleFontWeight: Font.GeologicaFont = .black
+    static let titleColor: Color = Color(hex: .lightWhite)
+
+    static let subtitleFontSize: CGFloat = 18
+    static let subtitleFontWeight: Font.GeologicaFont = .medium
+    static let subtitleColor: Color = Color(hex: .lightWhite)
+}
+
 struct AnimatedTextSectionView: View {
     var body: some View {
         AnimatedTextView(
-            title: "Expand Your Vocabulary",
-            subtitle: "Learn, remember, and use English words effortlessly.",
+            title: Constants.titleText,
+            subtitle: Constants.subtitleText,
             titleStyle: AnimatedTextStyle(
-                fontSize: 36,
-                fontWeight: .black,
-                color: Color(hex: .lightWhite)
+                fontSize: Constants.titleFontSize,
+                fontWeight: Constants.titleFontWeight,
+                color: Constants.titleColor
             ),
             subtitleStyle: AnimatedTextStyle(
-                fontSize: 18,
-                fontWeight: .medium,
-                color: Color(hex: .lightWhite)
+                fontSize: Constants.subtitleFontSize,
+                fontWeight: Constants.subtitleFontWeight,
+                color: Constants.subtitleColor
             )
         )
     }
 }
+
