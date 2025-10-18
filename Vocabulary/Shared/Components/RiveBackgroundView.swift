@@ -42,7 +42,7 @@ struct RiveBackgroundView: View {
 
     private func backgroundLayer() -> some View {
         ZStack {
-            Color.black
+            Color(hex: .background)
 
             Image(Constants.splineImageName)
                 .blur(radius: Constants.backgroundBlurRadius)

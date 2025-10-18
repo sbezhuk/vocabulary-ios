@@ -78,37 +78,3 @@ struct AnimatedTextView: View {
             .animation(animation.delay(Constants.subtitleDelay), value: showText)
     }
 }
-
-// MARK: - Preview
-#Preview {
-    VStack(spacing: 50) {
-        AnimatedTextView(
-            title: "Privacy stays private",
-            subtitle: "Only you decide who can access your information."
-        )
-
-        AnimatedTextView(
-            title: "Custom Style",
-            subtitle: "With different colors and fonts.",
-            titleStyle: AnimatedTextStyle(
-                fontSize: 28,
-                fontWeight: .bold,
-                color: .blue
-            ),
-            subtitleStyle: AnimatedTextStyle(
-                fontSize: 16,
-                fontWeight: .regular,
-                color: .gray
-            )
-        )
-
-        // Example with custom animation
-        AnimatedTextView(
-            title: "Configurable Animation",
-            subtitle: "This uses a spring animation.",
-            animation: .spring(response: 0.6, dampingFraction: 0.8)
-        )
-    }
-    .padding()
-    .dynamicTypeSize(.accessibility3)
-}

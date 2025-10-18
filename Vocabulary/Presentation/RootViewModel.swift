@@ -21,6 +21,10 @@ final class RootViewModel: ObservableObject {
     
     init(appRouter: AppRouter) {
         self.appRouter = appRouter
+
+        #if DEBUG
+        UserDefaults.standard.set(false, forKey: Constants.hasSeenOnboardingKey)
+        #endif
         
         let hasSeenOnboarding = UserDefaults.standard.bool(
             forKey: Constants.hasSeenOnboardingKey

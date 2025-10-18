@@ -20,18 +20,37 @@ private enum Constants {
 struct LiquidGlassButton: View {
     // MARK: - Public configuration
     let systemImage: String
+    let buttonSize: CGFloat
     let iconColor: Color
     let action: () -> Void
 
-    // MARK: - Initializer
-    init(
-        systemImage: String = "arrow.right",
-        iconColor: Color = .black.opacity(0.65),
-        action: @escaping () -> Void
-    ) {
+    // MARK: - Initializers (overloaded for clarity)
+    /// Designated initializer with full control.
+    init(systemImage: String, iconColor: Color, buttonSize: CGFloat, action: @escaping () -> Void) {
         self.systemImage = systemImage
         self.iconColor = iconColor
         self.action = action
+        self.buttonSize = buttonSize
+    }
+
+    /// Convenience: custom image and size, default color.
+    init(systemImage: String, buttonSize: CGFloat, action: @escaping () -> Void) {
+        self.init(
+            systemImage: systemImage,
+            iconColor: Color(hex: .lightWhite),
+            buttonSize: buttonSize,
+            action: action
+        )
+    }
+
+    /// Convenience: defaults for image, color and size.
+    init(action: @escaping () -> Void) {
+        self.init(
+            systemImage: "arrow.right",
+            iconColor: Color(hex: .lightWhite),
+            buttonSize: Constants.buttonSize,
+            action: action
+        )
     }
 
     // MARK: - Body
@@ -40,7 +59,7 @@ struct LiquidGlassButton: View {
             Image(systemName: systemImage)
                 .font(
                     .system(
-                        size: Constants.buttonSize * Constants.iconScaleFactor,
+                        size: buttonSize * Constants.iconScaleFactor,
                         weight: .medium
                     )
                 )
@@ -48,7 +67,7 @@ struct LiquidGlassButton: View {
         }
         .buttonStyle(
             LiquidGlassButtonStyle(
-                size: Constants.buttonSize,
+                size: buttonSize,
                 pressedScale: Constants.pressedScale,
                 feedbackIntensity: Constants.feedbackIntensity
             )
@@ -79,25 +98,5 @@ private struct LiquidGlassButtonStyle: ButtonStyle {
             .contentShape(Circle())
             .scaleEffect(isPressed ? pressedScale : 1.0)
             .animation(.easeInOut(duration: 0.1), value: isPressed)
-    }
-}
-
-// MARK: - Previews
-#Preview("Default") {
-    ZStack {
-        Color.black.ignoresSafeArea()
-        LiquidGlassButton { }
-    }
-}
-
-#Preview("Custom icon color") {
-    ZStack {
-        Color.black.ignoresSafeArea()
-        LiquidGlassButton(
-            systemImage: "bolt.fill",
-            iconColor: .white.opacity(0.9)
-        ) {
-            // action
-        }
     }
 }

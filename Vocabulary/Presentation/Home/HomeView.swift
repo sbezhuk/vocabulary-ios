@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct HomeView: View {
+    
     var body: some View {
-        Text("Home")
+        ZStack(alignment: .top) {
+            Color(hex: .background).ignoresSafeArea()
+            
+            HeaderView()
+                .frame(maxWidth: .infinity, alignment: .top)
+        }
     }
 }
