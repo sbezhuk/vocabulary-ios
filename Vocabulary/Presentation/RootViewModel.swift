@@ -7,13 +7,15 @@
 
 import Combine
 import Foundation
+import SwiftUI
 
 private enum Constants {
     static let hasSeenOnboardingKey = "hasSeenOnboarding"
 }
 
 final class RootViewModel: ObservableObject {
-    @Published var currentScreen: AppScreen = .onboarding
+    @Published var navigationPath = NavigationPath()
+    @Published var rootScreen: AppScreen = .onboarding
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -22,22 +24,48 @@ final class RootViewModel: ObservableObject {
     init(appRouter: AppRouter) {
         self.appRouter = appRouter
 
-        #if DEBUG
+#if DEBUG
         UserDefaults.standard.set(false, forKey: Constants.hasSeenOnboardingKey)
-        #endif
+#endif
         
         let hasSeenOnboarding = UserDefaults.standard.bool(
             forKey: Constants.hasSeenOnboardingKey
         )
-        currentScreen = hasSeenOnboarding ? .main : .onboarding
         
-        $currentScreen.sink { [weak self] screen in
-            self?.appRouter.navigate(to: screen)
+        rootScreen = hasSeenOnboarding ? .main : .onboarding
+        
+        $navigationPath.sink { path in
+            print("Navigation path changed: \(path.count) screens")
         }.store(in: &cancellables)
     }
     
     func completeOnboardingView() {
         UserDefaults.standard.set(true, forKey: Constants.hasSeenOnboardingKey)
-        currentScreen = .main
+        self.navigate(to: .main)
+    }
+}
+
+// MARK: - Navigation Methods
+
+private extension RootViewModel {
+    func navigate(to screen: AppScreen) {
+        navigationPath.append(screen)
+        appRouter.navigate(to: screen)
+    }
+    
+    func navigateBack() {
+        if !navigationPath.isEmpty {
+            navigationPath.removeLast()
+        }
+    }
+    
+    func navigateToRoot() {
+        navigationPath = NavigationPath()
+    }
+    
+    func setRootScreen(_ screen: AppScreen) {
+        navigationPath = NavigationPath()
+        rootScreen = screen
+        appRouter.navigate(to: screen)
     }
 }

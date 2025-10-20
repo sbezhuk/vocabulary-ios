@@ -11,9 +11,16 @@ struct RootView: View {
     @EnvironmentObject private var viewModel: RootViewModel
     
     var body: some View {
-        screenView(for: viewModel.currentScreen)
-            .id(viewModel.currentScreen)
-            
+        NavigationStack(path: $viewModel.navigationPath) {
+            currentScreen.navigationDestination(for: AppScreen.self) { screen in
+                screenView(for: screen).hideBackButton()
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private var currentScreen: some View {
+        screenView(for: viewModel.rootScreen)
     }
     
     @ViewBuilder
