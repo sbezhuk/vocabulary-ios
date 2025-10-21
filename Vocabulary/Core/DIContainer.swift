@@ -13,21 +13,11 @@ final class DIContainer {
     let container = Container()
     
     private init() {
-        registerServices()
         registerViewModels()
     }
     
-    private func registerServices() {
-        container.register(AppRouter.self) { _ in
-            AppRouter()
-        }
-    }
-    
     private func registerViewModels() {
-        container.register(RootViewModel.self) { resolver in
-            let router = resolver.resolve(AppRouter.self)!
-            return RootViewModel(appRouter: router)
-        }
+        container.register(RootViewModel.self) { _ in RootViewModel() }
     }
 }
 

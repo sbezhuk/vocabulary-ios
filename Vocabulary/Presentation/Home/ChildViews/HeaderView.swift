@@ -14,12 +14,14 @@ private enum Constants {
     static let titleColor: Color = Color(hex: .lightWhite)
 
     static let buttonSystemImage: String = "plus"
-    static let buttonSize: CGFloat = 60
+    static let buttonSize: CGFloat = 50
 
     static let horizontalPadding: CGFloat = 24
 }
 
 struct HeaderView: View {
+    let action: () -> Void
+    
     var body: some View {
         HStack {
             Text(Constants.titleText)
@@ -28,9 +30,7 @@ struct HeaderView: View {
                 
             Spacer()
                 
-            LiquidGlassButton(systemImage: Constants.buttonSystemImage, buttonSize: Constants.buttonSize) {
-                print("add ++++")
-            }
+            LiquidGlassButton(systemImage: Constants.buttonSystemImage, buttonSize: Constants.buttonSize, action: action)
         }
         .padding([.leading, .trailing], Constants.horizontalPadding)
     }

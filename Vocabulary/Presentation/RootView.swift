@@ -13,14 +13,14 @@ struct RootView: View {
     var body: some View {
         NavigationStack(path: $viewModel.navigationPath) {
             currentScreen.navigationDestination(for: AppScreen.self) { screen in
-                screenView(for: screen).hideBackButton()
+                screenView(for: screen)
             }
         }
     }
     
     @ViewBuilder
     private var currentScreen: some View {
-        screenView(for: viewModel.rootScreen)
+        screenView(for: viewModel.appRootScreen)
     }
     
     @ViewBuilder

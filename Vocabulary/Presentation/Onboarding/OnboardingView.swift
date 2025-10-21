@@ -18,7 +18,7 @@ private enum Constants {
 }
 
 struct OnboardingView: View {
-    @EnvironmentObject var viewModel: RootViewModel
+    @EnvironmentObject private var viewModel: RootViewModel
     
     var body: some View {
         ZStack {

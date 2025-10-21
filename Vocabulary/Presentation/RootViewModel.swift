@@ -15,33 +15,25 @@ private enum Constants {
 
 final class RootViewModel: ObservableObject {
     @Published var navigationPath = NavigationPath()
-    @Published var rootScreen: AppScreen = .onboarding
     
-    private var cancellables = Set<AnyCancellable>()
+    @Published var appRootScreen: AppScreen = .onboarding
+    @Published var appRootSheet: AppSheet?
     
-    private let appRouter: AppRouter
-    
-    init(appRouter: AppRouter) {
-        self.appRouter = appRouter
-
-#if DEBUG
-        UserDefaults.standard.set(false, forKey: Constants.hasSeenOnboardingKey)
-#endif
-        
+    init() {
         let hasSeenOnboarding = UserDefaults.standard.bool(
             forKey: Constants.hasSeenOnboardingKey
         )
         
-        rootScreen = hasSeenOnboarding ? .main : .onboarding
-        
-        $navigationPath.sink { path in
-            print("Navigation path changed: \(path.count) screens")
-        }.store(in: &cancellables)
+        appRootScreen = hasSeenOnboarding ? .main : .onboarding
     }
     
-    func completeOnboardingView() {
+    public func completeOnboardingView() {
         UserDefaults.standard.set(true, forKey: Constants.hasSeenOnboardingKey)
-        self.navigate(to: .main)
+        setRootScreen(.main)
+    }
+    
+    public func openCreateSelectorSheet() {
+        presentSheet(.createSelector)
     }
 }
 
@@ -50,7 +42,6 @@ final class RootViewModel: ObservableObject {
 private extension RootViewModel {
     func navigate(to screen: AppScreen) {
         navigationPath.append(screen)
-        appRouter.navigate(to: screen)
     }
     
     func navigateBack() {
@@ -65,7 +56,18 @@ private extension RootViewModel {
     
     func setRootScreen(_ screen: AppScreen) {
         navigationPath = NavigationPath()
-        rootScreen = screen
-        appRouter.navigate(to: screen)
+        appRootScreen = screen
+    }
+}
+
+// MARK: - Sheet Navigation Methods
+
+private extension RootViewModel {
+    func presentSheet(_ sheet: AppSheet) {
+        appRootSheet = sheet
+    }
+        
+    func dismissSheet() {
+        appRootSheet = nil
     }
 }
