@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject private var viewModel: RootViewModel
-    
     var body: some View {
         ZStack(alignment: .top) {
             Color(hex: .background).ignoresSafeArea()
             
             HeaderView() {
-                viewModel.openCreateSelectorSheet()
+                
             }.frame(maxWidth: .infinity, alignment: .top)
         }
     }
