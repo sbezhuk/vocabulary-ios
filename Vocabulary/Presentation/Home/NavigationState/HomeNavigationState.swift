@@ -1,5 +1,5 @@
 //
-//  HomeViewModel.swift
+//  HomeNavigationState.swift
 //  Vocabulary
 //
 //  Created by Stepan Bezhuk on 21.10.2025.
@@ -9,7 +9,7 @@ import Combine
 import Foundation
 import SwiftUI
 
-final class HomeViewModel: ObservableObject {
+final class HomeNavigationState: ObservableObject {
     @Published var navigationPath = NavigationPath()
     @Published var presentedSheet: HomeSheet?
     
@@ -27,7 +27,7 @@ final class HomeViewModel: ObservableObject {
 
 // MARK: - Navigation Methods
 
-private extension HomeViewModel {
+private extension HomeNavigationState {
     func navigate(to screen: HomeScreen) {
         navigationPath.append(screen)
     }
@@ -45,7 +45,7 @@ private extension HomeViewModel {
 
 // MARK: - Sheet Methods
 
-private extension HomeViewModel {
+private extension HomeNavigationState {
     func presentSheet(_ sheet: HomeSheet) {
         presentedSheet = sheet
     }

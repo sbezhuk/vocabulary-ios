@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject private var viewModel = DIContainer.shared.resolve(HomeViewModel.self)
+    @StateObject private var viewModel = DIContainer.shared.resolve(HomeNavigationState.self)
     
     var body: some View {
         NavigationStack(path: $viewModel.navigationPath) {

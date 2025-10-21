@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CreateSelectorView: View {
-    @StateObject private var viewModel: HomeViewModel = DIContainer.shared.resolve(HomeViewModel.self)
+    @StateObject private var viewModel: HomeNavigationState = DIContainer.shared.resolve(HomeNavigationState.self)
     
     @Environment(\.dismiss) private var dismiss
     

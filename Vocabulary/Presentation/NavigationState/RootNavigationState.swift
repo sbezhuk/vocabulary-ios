@@ -1,5 +1,5 @@
 //
-//  RootViewModel.swift
+//  RootNavigationState.swift
 //  Vocabulary
 //
 //  Created by Stepan Bezhuk on 15.10.2025.
@@ -9,23 +9,19 @@ import Combine
 import Foundation
 import SwiftUI
 
-private enum Constants {
-    static let hasSeenOnboardingKey = "hasSeenOnboarding"
-}
-
-final class RootViewModel: ObservableObject {
+final class RootNavigationState: ObservableObject {
     @Published var navigationPath = NavigationPath()
     
     @Published var appRootScreen: AppScreen = .onboarding
     @Published var appRootSheet: AppSheet?
     
     init() {
-        let hasSeenOnboarding = UserDefaults.standard.bool(forKey: Constants.hasSeenOnboardingKey)
+        let hasSeenOnboarding = UserDefaults.standard.bool(forKey: RootNavigationStateConstants.hasSeenOnboardingKey)
         appRootScreen = hasSeenOnboarding ? .main : .onboarding
     }
     
     public func completeOnboardingView() {
-        UserDefaults.standard.set(true, forKey: Constants.hasSeenOnboardingKey)
+        UserDefaults.standard.set(true, forKey: RootNavigationStateConstants.hasSeenOnboardingKey)
         setRootScreen(.main)
     }
     
@@ -36,7 +32,7 @@ final class RootViewModel: ObservableObject {
 
 // MARK: - Navigation Methods
 
-private extension RootViewModel {
+private extension RootNavigationState {
     func navigate(to screen: AppScreen) {
         navigationPath.append(screen)
     }
@@ -59,7 +55,7 @@ private extension RootViewModel {
 
 // MARK: - Sheet Navigation Methods
 
-private extension RootViewModel {
+private extension RootNavigationState {
     func presentSheet(_ sheet: AppSheet) {
         appRootSheet = sheet
     }

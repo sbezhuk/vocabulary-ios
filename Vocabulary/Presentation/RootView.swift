@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RootView: View {
-    @StateObject private var rootViewModel: RootViewModel = DIContainer.shared.resolve(RootViewModel.self)
+    @StateObject private var rootViewModel: RootNavigationState = DIContainer.shared.resolve(RootNavigationState.self)
     
     var body: some View {
         NavigationStack(path: $rootViewModel.navigationPath) {
