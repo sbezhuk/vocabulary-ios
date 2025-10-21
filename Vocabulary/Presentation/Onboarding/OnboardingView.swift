@@ -18,7 +18,7 @@ private enum Constants {
 }
 
 struct OnboardingView: View {
-    @EnvironmentObject private var viewModel: RootViewModel
+    @StateObject private var rootViewModel: RootViewModel = DIContainer.shared.resolve(RootViewModel.self)
     
     var body: some View {
         ZStack {
@@ -36,7 +36,7 @@ struct OnboardingView: View {
             HStack {
                 Spacer()
                 LiquidGlassButton {
-                    viewModel.completeOnboardingView()
+                    rootViewModel.completeOnboardingView()
                 }
             }.padding(.trailing, Constants.bottomNextButtonTrailngPadding).padding(
                 .bottom,

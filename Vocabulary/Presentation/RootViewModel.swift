@@ -20,10 +20,7 @@ final class RootViewModel: ObservableObject {
     @Published var appRootSheet: AppSheet?
     
     init() {
-        let hasSeenOnboarding = UserDefaults.standard.bool(
-            forKey: Constants.hasSeenOnboardingKey
-        )
-        
+        let hasSeenOnboarding = UserDefaults.standard.bool(forKey: Constants.hasSeenOnboardingKey)
         appRootScreen = hasSeenOnboarding ? .main : .onboarding
     }
     

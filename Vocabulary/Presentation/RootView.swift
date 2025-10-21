@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct RootView: View {
-    @EnvironmentObject private var viewModel: RootViewModel
+    @StateObject private var rootViewModel: RootViewModel = DIContainer.shared.resolve(RootViewModel.self)
     
     var body: some View {
-        NavigationStack(path: $viewModel.navigationPath) {
+        NavigationStack(path: $rootViewModel.navigationPath) {
             currentScreen.navigationDestination(for: AppScreen.self) { screen in
                 screenView(for: screen)
             }
@@ -20,7 +20,7 @@ struct RootView: View {
     
     @ViewBuilder
     private var currentScreen: some View {
-        screenView(for: viewModel.appRootScreen)
+        screenView(for: rootViewModel.appRootScreen)
     }
     
     @ViewBuilder

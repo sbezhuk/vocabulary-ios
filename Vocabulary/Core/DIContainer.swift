@@ -17,7 +17,13 @@ final class DIContainer {
     }
     
     private func registerViewModels() {
-        container.register(RootViewModel.self) { _ in RootViewModel() }
+        container.register(RootViewModel.self) { _ in
+            RootViewModel()
+        }.inObjectScope(.container)
+        
+        container.register(HomeViewModel.self) { _ in
+            HomeViewModel()
+        }.inObjectScope(.container)
     }
 }
 
